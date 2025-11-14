@@ -26,3 +26,20 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Backend (Yii2/PHP)
+/backend/vendor/
+/backend/runtime/
+/backend/web/assets/
+composer.lock
+
+# Docker volumes
+/pgdata/
+/minio/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~

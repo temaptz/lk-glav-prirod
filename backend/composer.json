@@ -1,0 +1,40 @@
+{
+  "name": "glavprirod/backend",
+  "type": "project",
+  "description": "GlavPrirodBuro Ecology Client Cabinet backend (Yii2)",
+  "license": "proprietary",
+  "require": {
+    "php": ">=8.1",
+    "yiisoft/yii2": "~2.0.53",
+    "yidas/yii2-composer-bower-skip": "*",
+    "firebase/php-jwt": "^6.0",
+    "league/flysystem": "^3.0",
+    "league/flysystem-aws-s3-v3": "^3.0",
+    "aws/aws-sdk-php": "^3.0"
+  },
+  "require-dev": {},
+  "autoload": {
+    "psr-4": {
+      "app\\": "src/"
+    }
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "yii\\composer\\Installer::postInstall"
+    ],
+    "post-update-cmd": [
+      "yii\\composer\\Installer::postUpdate"
+    ]
+  },
+  "config": {
+    "process-timeout": 600,
+    "platform": {
+      "php": "8.1"
+    },
+    "allow-plugins": {
+      "yiisoft/yii2-composer": true
+    }
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true
+}

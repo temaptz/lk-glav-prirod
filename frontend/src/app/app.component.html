@@ -1,0 +1,52 @@
+<div class="container" [class.logged-out]="!isLoggedIn()">
+  <aside class="sidebar" *ngIf="isLoggedIn()">
+    <h2>ГлавПрирод</h2>
+    <div class="user-role-badge">{{ userRole() }}</div>
+    <nav>
+      <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Главная</a>
+      
+      <!-- Для клиентов: просмотр своих данных -->
+      <a *ngIf="isClient()" routerLink="/requirements" routerLinkActive="active">Мои требования</a>
+      <a *ngIf="isClient()" routerLink="/artifacts" routerLinkActive="active">Документы</a>
+      <a *ngIf="isClient()" routerLink="/calendar" routerLinkActive="active">Календарь</a>
+      <a *ngIf="isClient()" routerLink="/risks" routerLinkActive="active">Риски</a>
+      <a *ngIf="isClient()" routerLink="/finance" routerLinkActive="active">Договоры и счета</a>
+      
+      <!-- Для менеджеров и специалистов: работа с клиентами -->
+      <a *ngIf="isManager() || isSpecialist()" routerLink="/clients" routerLinkActive="active">Клиенты</a>
+      <a *ngIf="isManager() || isSpecialist()" routerLink="/requirements" routerLinkActive="active">Требования</a>
+      <a *ngIf="isManager() || isSpecialist()" routerLink="/artifacts" routerLinkActive="active">Артефакты</a>
+      <a *ngIf="isManager() || isSpecialist()" routerLink="/calendar" routerLinkActive="active">Календарь</a>
+      <a *ngIf="isManager() || isSpecialist()" routerLink="/risks" routerLinkActive="active">Риски</a>
+      <a *ngIf="isManager() || isSpecialist()" routerLink="/finance" routerLinkActive="active">Финансы</a>
+      
+      <!-- Для админа: полный доступ -->
+      <a *ngIf="isAdmin()" routerLink="/clients" routerLinkActive="active">Все клиенты</a>
+      <a *ngIf="isAdmin()" routerLink="/requirements" routerLinkActive="active">Требования</a>
+      <a *ngIf="isAdmin()" routerLink="/artifacts" routerLinkActive="active">Артефакты</a>
+      <a *ngIf="isAdmin()" routerLink="/calendar" routerLinkActive="active">Календарь</a>
+      <a *ngIf="isAdmin()" routerLink="/risks" routerLinkActive="active">Риски</a>
+      <a *ngIf="isAdmin()" routerLink="/finance" routerLinkActive="active">Финансы</a>
+      
+      <!-- Админ-панель только для админа -->
+      <div *ngIf="isAdmin()" class="nav-section">
+        <div class="nav-section-title">Администрирование</div>
+        <a routerLink="/admin/users" routerLinkActive="active">Пользователи</a>
+        <a routerLink="/admin/requirements-catalog" routerLinkActive="active">Справочник требований</a>
+        <a routerLink="/admin/risks-catalog" routerLinkActive="active">Справочник рисков</a>
+      </div>
+    </nav>
+  </aside>
+  <div class="content-wrapper">
+    <header class="header" *ngIf="isLoggedIn()">
+      <h1>{{ title }}</h1>
+      <div class="header-right">
+        <span class="user-email">{{ userEmail() }}</span>
+        <button (click)="logout()" class="logout-btn">Выход</button>
+      </div>
+    </header>
+    <main class="main">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>
